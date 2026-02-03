@@ -1,0 +1,23 @@
+lsblk -f
+
+mount /dev/sda3 /mnt
+mkdir -p /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
+
+mount --bind /dev      /mnt/dev
+mount -t devpts devpts /mnt/dev/pts
+mount --bind /proc     /mnt/proc
+mount --bind /sys      /mnt/sys
+
+chroot /mnt /bin/bash
+
+grub-install \
+  --target=x86_64-efi \
+  --efi-directory=/boot/efi \
+  --bootloader-id=ubuntu \
+  --recheck
+
+update-grub
+
+exit
+reboot
