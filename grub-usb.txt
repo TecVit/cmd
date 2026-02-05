@@ -1,0 +1,21 @@
+sudo mkdir -p /mnt/clone
+
+sudo mount /dev/sda3 /mnt/clone
+
+sudo mkdir -p /mnt/clone/boot/efi
+sudo mount /dev/sda1 /mnt/clone/boot/efi
+
+ls /mnt/clone/boot/efi
+
+sudo mkdir -p /mnt/clone/boot/efi/EFI/BOOT
+
+sudo cp \
+  /mnt/clone/boot/efi/EFI/ubuntu/grubx64.efi \
+  /mnt/clone/boot/efi/EFI/BOOT/BOOTX64.EFI
+
+ls -lh /mnt/clone/boot/efi/EFI/BOOT
+
+sudo umount /mnt/clone/boot/efi
+sudo umount /mnt/clone
+
+reboot
