@@ -1,0 +1,5 @@
+sudo systemctl disable apt-daily.service
+sudo systemctl disable apt-daily-upgrade.service
+
+sudo systemctl mask apt-daily.service
+sudo systemctl mask apt-daily-upgrade.service
